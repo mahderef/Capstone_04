@@ -1,0 +1,130 @@
+#%RAML 1.0
+version: V1
+title: Maheder_Capstone
+
+/users:
+  get:
+    description: Get all Users 
+    responses: 
+     200:
+       body:
+         application/json:
+            examples:
+               output: !include example/GetAllUserexample.raml
+     400: 
+      body: 
+       application/json:
+         example:
+           "message" : "error occured"
+     500:
+       body:
+         application/json:
+           example:
+             "message": "server not"
+  /ID:
+    get:
+      description: Get user by ID
+      queryParameters:
+        userID:
+          description: insert userID
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              examples: !include example/GETandPUTexample.raml
+        400: 
+          body: 
+            application/json:
+              example:
+                "message" : "error occured"
+        500:
+          body:
+           application/json:
+              example:
+                "message": "server not"
+    post:
+       description: creates new users
+       headers: 
+         First:
+           required: true
+         Last:
+           required: true
+         Department:
+           required: true
+       body:
+        application/json:
+          example: 
+           output: !include example/POSTexample.raml
+       responses:
+          201: 
+            body:
+              application/json:
+                example: 
+                 "message": "user created"
+          400: 
+            body:
+              application/json:
+                example: 
+                 "message": "error message"
+          500:
+           body:
+            application/json:
+             example:
+              "message": "server not"      
+    put:
+       description: update users
+       headers: 
+         ID:
+           required: true
+         First:
+           required: true
+         Last:
+           required: true
+         Department:
+           required: true
+       body:
+        application/json:
+          example: 
+           output: !include example/GETandPUTexample.raml
+       responses:
+          200: 
+            body:
+              application/json:
+                example: 
+                 "message": "user updated"
+          400: 
+            body:
+              application/json:
+                example: 
+                 "message": "error message"
+          500:
+           body:
+            application/json:
+             example:
+              "message": "server not" 
+    delete:
+      description: deletes a particular user
+      queryParameters:
+        ID:
+          required: true
+      responses:  
+        200:
+          body:
+            application/json:
+              example:
+                message: "user deleted"
+        404:
+          body:
+            application/json:
+              example: 
+                    "message": "error message"
+        500:
+          body:
+            application/json:
+              example:
+                  "message": "server not" 
+            
+                    
+
+    
